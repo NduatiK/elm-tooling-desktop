@@ -1,0 +1,16 @@
+---
+dev:
+  dialect: "sqlite3"
+  database: C:\Users\Hp\Project\granular\app\development.sqlite
+  
+development:
+  dialect: "sqlite3"
+  database: C:\Users\Hp\Project\granular\app\development.sqlite
+
+test:
+  dialect: "sqlite3"
+  database: C:\Users\Hp\Project\granular\app\test.sqlite
+
+production:
+  dialect: "sqlite3"
+  database: ./data.db

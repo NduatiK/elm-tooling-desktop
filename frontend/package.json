@@ -1,0 +1,8 @@
+{
+  "name": "granular",
+  "scripts": {
+    "build": "elm make elm/Main.elm --optimize --output=dist/elm.js",
+    "dev:watch": "elm-live elm/Main.elm --no-server -- --output=dist/elm.js --debug"
+  },
+  "author": "Nduati Kuria"
+}

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/main.css" />
+  <link rel="stylesheet" href="/fonts.css" />
+  <script src="elm.js"></script>
+  <script src="/websocket-effects-patch.js"></script>
+  <script src="/utils.js"></script>
+</head>
+
+<body>
+  <script>
+    addLog(Promise)
+
+    const go = window.go.main.App
+
+    // BOOKS
+
+    function listBooks() {
+      return go.ListBooks()
+    }
+
+    function getBook(bookId) {
+      return go.GetBook(bookId).log()
+    }
+
+    function createBook(book) {
+      return go.CreateBook(book)
+    }
+
+    function updateBook(book) {
+      return go.UpdateBook(book)
+    }
+
+    function deleteBook(book) {
+      return go.DeleteBook(book)
+    }
+
+    // NOTES
+
+    function listNotes(bookId) {
+      return go.ListNotes(bookId)
+    }
+
+    function getNote(noteId) {
+      return go.GetNote(noteId)
+    }
+
+    function createNote(note) {
+      return go.CreateNote(note)
+    }
+
+    function updateNote(note) {
+      return go.UpdateNote(note)
+    }
+    function updateNotes(note) {
+      return go.UpdateNotes(note)
+    }
+
+    function deleteNote(note) {
+      return go.DeleteNote(note)
+    }
+
+    // CHAPTERS
+
+    function listChapters(bookId) {
+      return go.ListChapters(bookId).log()
+    }
+
+    function getChapter(chapterId) {
+      return go.GetChapter(chapterId)
+    }
+
+    function createChapter(chapter) {
+      return go.CreateChapter(chapter)
+    }
+
+    function updateChapter(chapter) {
+      return go.UpdateChapter(chapter)
+    }
+    function updateChapters(chapter) {
+      return go.UpdateChapters(chapter)
+    }
+
+    function deleteChapter(chapter) {
+      return go.DeleteChapter(chapter)
+    }
+
+
+    function sleep(time) {
+      return new Promise((resolve) => setTimeout(resolve, time))
+    }
+
+    function focusAtEndOf(id, delay = 10) {
+      // var prevElement = document.activeElement;
+      // var selectionStart = prevElement["selectionStart"];
+      return new Promise((resolve) => {
+        sleep(delay).then(() => {
+          if (id && id == "") {
+            resolve()
+            return
+          };
+          var targetElement = document.getElementById(id);
+          if (targetElement) {
+            targetElement.focus();
+
+
+            // console.log(selectionStart)
+            // if (selectionStart !== undefined) {
+            //   targetElement.setSelectionRange(selectionStart, selectionStart);
+            //   return;
+            // }
+            // else
+            if (targetElement.value) {
+              var val = targetElement.value;
+              targetElement.value = "";
+              targetElement.value = val;
+            }
+            resolve()
+          } else {
+            resolve()
+          }
+        });
+      })
+    }
+
+
+    const app = Elm.Main.init();
+
+
+    (function () {
+      var timer = undefined
+      var el = document.body;
+      el.classList.add("hidden_scroll");
+      window.addEventListener('scroll', function (e) {
+        (function (el) {
+          el.classList.remove("hidden_scroll");
+          if (timer) {
+            clearTimeout(timer);
+          }
+          timer = setTimeout(function () {
+            el.classList.add("hidden_scroll");
+          }, 300);
+        })(el);
+      })
+    })();
+    // window.addEventListener("keydown", (ev) => {
+    //   if ((ev.key === "f" || ev.key === "F") && (ev.metaKey || ev.ctrlKey)) {
+    //     ev.preventDefault()
+    //   }
+    // })
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      return null
+    }
+
+    function snapToTop() {
+      window.scrollTo({ top: 0 })
+      return null
+    }
+
+    function scrollToElement(id) {
+      sleep(100).then(() =>
+        document.querySelector("#" + id).scrollIntoView({
+          behavior: 'smooth'
+        })
+      )
+      return null
+    }
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,5 @@
+elm-stuff
+/.vscode
+/build/bin/*
+./development.sqlite
+development.sqlite

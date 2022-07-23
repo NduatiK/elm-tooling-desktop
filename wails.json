@@ -1,0 +1,18 @@
+{
+  "name": "granular",
+  "outputfilename": "app",
+  "assetdir": "./frontend",
+  "frontend:build": "npm run build",
+  "frontend:install": "",
+  "frontend:dev": "",
+  "frontend:dev:watcher": "npm run dev:watch",
+  "wailsjsdir": "./frontend",
+  "author": {
+    "name": "Nduati Kuria",
+    "email": "012nkuria@gmail.com"
+  },
+  "debounceMS": 100,
+  "devServer": "localhost:34115",
+  "runNonNativeBuildHooks": false,
+  "postBuildHooks": null
+}
